@@ -13,7 +13,7 @@ $current_user = mysqli_fetch_assoc($result);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/foundation-icons/foundation-icons.css">
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css">
     <link rel="stylesheet" href="css/app.css">
     <script src="js/vendor/modernizr.js"></script>
   </head>
