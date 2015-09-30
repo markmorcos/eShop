@@ -1,6 +1,5 @@
 <?php include "header.php" ?>
 <?php
-error_reporting(E_ALL); ini_set('display_errors', 1);
 if($current_user)
 {
   $_SESSION["notice"] = "Already logged in";
