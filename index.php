@@ -1,19 +1,13 @@
 <?php include "header.php" ?>
-<?php
-if(!$current_user)
-{
-  $_SESSION["notice"] = "Please login to continue";
-  header("Location: login.php");
-  die();
-}
-?>
-<div class="row">
+<div class="row" data-equalizer>
 <?php
 $result = mysqli_query($con, "SELECT * FROM products");
 while($product = mysqli_fetch_assoc($result)):
 ?>
 <div class="small-12 medium-6 large-4 columns">
-  <img src="http://placehold.it/500x500" width="100%">
+  <div data-equalizer-watch>
+    <img src="<?= $product["image"] ? $uploads["files"] . "products/" . $product["image"] : "img/placeholder.png"; ?>" width="100%">
+  </div>
   <div class="row">
     <div class="small-4 columns"><strong><?php echo $product["name"]; ?></strong><br><i>£<?php echo $product["price"]; ?></i></div>
     <?php if($product["stock"] && $current_user): ?>
@@ -22,7 +16,7 @@ while($product = mysqli_fetch_assoc($result)):
         <div class="small-5 columns"><button type="submit" class="right tiny success button"><i class="fi-shopping-cart"></i> Add to Cart</button></div>
       </form>
     <?php elseif(!$current_user): ?>
-      <div class="small-8 columns"><a href="javascript:;" class="disabled right tiny success button">Please Login</a></div>
+      <div class="small-8 columns"><a href="javascript:;" class="disabled right tiny success button">Please Login to buy</a></div>
     <?php else: ?>
       <div class="small-8 columns"><a href="javascript:;" class="disabled right tiny success button">Sold Out</a></div>
     <?php endif; ?>

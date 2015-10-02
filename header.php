@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "administrator/includes/functions.php";
 $con = mysqli_connect("localhost", "root", "", "eshop");
 if (mysqli_connect_errno()) die("Failed to connect to MySQL: " . mysqli_connect_error());
 $id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : 0;

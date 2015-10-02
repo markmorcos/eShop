@@ -17,7 +17,7 @@ if(isset($_POST["profile"]))
   }
   mysqli_query($con, "UPDATE users SET first_name = '$first_name', last_name = '$last_name', avatar = '$avatar' WHERE id = $id");
   $_SESSION["notice"] = "Profile updated successfully";
-  echo "<script>location.href = 'profile.php'</script>";
+  header("Location: profile.php");
   die();
 }
 ?>
