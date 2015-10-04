@@ -1,5 +1,6 @@
 <?php
 session_start();
 unset($_SESSION["user_id"]);
-header("Location: login.php");
+$_SESSION["notice"] = "Logged out successfully";
+header("Location: index.php");
 ?>

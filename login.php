@@ -20,21 +20,21 @@ if(isset($_POST["login"]))
     die();
   }
   $_SESSION["login_notice"] = "Logged in successfully";
-  header("Location: profile.php");
+  header("Location: index.php");
   die();
 }
 ?>
-<?php if(isset($_SESSION["login_alert"])) { ?><div data-alert class="alert-box alert"><?php echo $_SESSION["login_alert"]; ?> <a href="#" class="close">&times;</a></div><?php } ?>
-<?php if(isset($_SESSION["login_notice"])) { ?><div data-alert class="alert-box info"><?php echo $_SESSION["login_notice"]; ?> <a href="#" class="close">&times;</a></div><?php } ?>
+<?php if(isset($_SESSION["login_alert"])) { ?><div data-alert class="alert-box alert"><?= $_SESSION["login_alert"]; ?> <a href="#" class="close">&times;</a></div><?php } ?>
+<?php if(isset($_SESSION["login_notice"])) { ?><div data-alert class="alert-box info"><?= $_SESSION["login_notice"]; ?> <a href="#" class="close">&times;</a></div><?php } ?>
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-6 push-3 columns">
   <h1>Login</h1>
   <form method="post">
     <input type="hidden" name="login" value="true">
     <div class="row">
       <div class="small-12 columns">
-        <label>Email <input type="email" name="email" placeholder="Email" value="<?php echo isset($_POST["email"]) ? $_POST["email"] : ""; ?>"></label>
-        <label>Password <input type="password" name="password" placeholder="Password"></label>
+        <label>Email <input type="email" name="email" placeholder="Email" value="<?= isset($_POST["email"]) ? $_POST["email"] : ""; ?>" required></label>
+        <label>Password <input type="password" name="password" placeholder="Password" required></label>
         <input type="submit" class="tiny expand button" value="Login">
       </div>
     </div>

@@ -1,5 +1,11 @@
 <?php include "header.php" ?>
 <?php
+if(!$current_user)
+{
+  $_SESSION["notice"] = "You must be logged in to view this page";
+  header("Location: login.php");
+  die();
+}
 if(isset($_POST["profile"]))
 {
   $first_name = $_POST["first_name"];
@@ -22,16 +28,16 @@ if(isset($_POST["profile"]))
 }
 ?>
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-6 push-3 columns">
   <h1>Profile</h1>
-  <img src="<?php echo $current_user["avatar"]; ?>">
-  <form method="post" enctype="multipart/form-data">
+  <p><i class="fi-mail"></i> <a href="mailto:$current_user["email"]"><?= $current_user["email"]; ?></a></p>
+  <img src="<?= $current_user["avatar"]; ?>">
+  <form method="post" enctype="multipart/form-data"  onsubmit="if($('#p1').val() != "" && $('#p1').val() != $('#p2').val()) { alert('Passwords must match'); return false; }>
     <input type="hidden" name="profile" value="true">
     <div class="row">
       <div class="small-12 columns">
-        <label>First Name <input type="text" name="first_name" placeholder="First Name" value="<?php echo $current_user["first_name"]; ?>"></label>
-        <label>Last Name <input type="text" name="last_name" placeholder="Last Name" value="<?php echo $current_user["last_name"]; ?>"></label>
-        <label>Email <input type="email" name="email" placeholder="Email" value="<?php echo $current_user["email"]; ?>"></label>
+        <label>First Name <input type="text" name="first_name" placeholder="First Name" value="<?= $current_user["first_name"]; ?>" required></label>
+        <label>Last Name <input type="text" name="last_name" placeholder="Last Name" value="<?= $current_user["last_name"]; ?>" required></label>
         <label>Password <input type="password" name="password" placeholder="Password"></label>
         <label>Confirm Password <input type="password" name="confirm_password" placeholder="Confirm Password"></label>
         <label>Avatar <input type="file" name="avatar" placeholder="Avatar"></label>

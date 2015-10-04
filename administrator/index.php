@@ -1,7 +1,7 @@
 <?php
 $page =
 [
-	"name" => "products.php",
+	"name" => "index.php",
 	"title" => "Products",
 	"table" => "products",
 	"primary" => "id",

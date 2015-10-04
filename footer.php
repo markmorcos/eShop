@@ -1,4 +1,3 @@
-  <script src="<?= $apath; ?>js/vendor/jquery.js"></script>
   <script src="<?= $apath; ?>js/foundation.min.js"></script>
   <script>
     $(document).foundation();
@@ -11,5 +10,6 @@ unset($_SESSION["notice"]);
 unset($_SESSION["login_alert"]);
 unset($_SESSION["login_notice"]);
 mysqli_free_result($result);
+@mysqli_free_result($result2);
 mysqli_close($con);
 ?>

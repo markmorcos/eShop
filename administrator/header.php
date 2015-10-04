@@ -76,8 +76,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </div>
 <div id="navbar" class="navbar-collapse collapse">
 <ul class="nav navbar-nav">
-<li><a><?php echo $title ?></a></li>
-<li <?php if($current == "products.php") echo 'class="active"'; ?>><a href="<?php echo $path; ?>products.php">Products</a></li>
+<li <?php if($current == "index.php") echo 'class="active"'; ?>><a href="<?php echo $path; ?>index.php">eShop Products</a></li>
 </ul>
 </div>
 </div>
