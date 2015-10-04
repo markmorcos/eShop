@@ -1,5 +1,5 @@
 <?php
-include "administrator/includes/functions.php";
+include "admin/includes/functions.php";
 $con = mysqli_connect("localhost", "root", "", "eshop");
 if (mysqli_connect_errno()) die("Failed to connect to MySQL: " . mysqli_connect_error());
 $id = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : 0;
@@ -33,9 +33,9 @@ $current_user = mysqli_fetch_assoc($result);
           <li class="divider hide-for-small"></li>
           <li><a href="cart.php"><i class="fi-shopping-cart"></i> Cart</a></li>
           <li class="divider hide-for-small"></li>
-          <li><a href="purchases.php">Purchases</a></li>
+          <li><a href="purchases.php"><i class="fi-shopping-bag"></i> Purchases</a></li>
           <li class="divider hide-for-small"></li>
-          <li><a href="profile.php">Profile (<?= $current_user["name"]; ?>)</a></li>
+          <li><a href="profile.php"><i class="fi-torso"></i> Profile</a></li>
           <li class="divider hide-for-small"></li>
           <li><a href="logout.php">Logout</a></li>
         <?php else: ?>

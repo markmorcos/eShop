@@ -3,14 +3,6 @@ include "includes/functions.php";
 include "includes/engine.php";
 $url = $path . $page["name"];
 $current = explode("?", $page["name"])[0];
-$login = $_SESSION["admin_id"];
-if($login)
-{
-  $current_admin = $db->querySelectSingle("SELECT * FROM admins WHERE id = '$login'");
-  $current_store = $db->querySelectSingle("SELECT * FROM stores WHERE id = '" . $current_admin['store_id'] . "'");
-}
-//if($page["name"] != "login.php" && !$login) header("Location: {$path}login.php");
-//elseif($page["name"] == "login.php" && $login) header("Location: {$path}index.php");
 $id = $_GET["id"] ? $_GET["id"] : $_POST["id"];
 $action = $_GET["action"] ? $_GET["action"] : $_POST["action"];
 $submit = $_GET["submit"] ? $_GET["submit"] : $_POST["submit"];

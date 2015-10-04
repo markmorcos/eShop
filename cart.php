@@ -101,11 +101,11 @@ $total = 0;
     <div class="small-1 columns">&nbsp;</div>
     <div class="small-4 columns">&nbsp;</div>
     <div class="small-1 columns"><?= "£$total" ?></div>
-    <div class="small-1 columns">
+    <div class="small-2 columns">
       <form method="post" onsubmit="return confirm('Are you sure you want to checkout?');">
         <input type="hidden" name="checkout" value="true">
         <?php if($total > 0): ?>
-          <input type="submit" value="Checkout" class="tiny success button">
+          <button type="submit" class="tiny success button"><i class="fi-arrow-right"></i> Checkout</button>
         <?php endif; ?>
       </form>
     </div>

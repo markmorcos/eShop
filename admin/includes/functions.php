@@ -1,11 +1,9 @@
 <?php
 include "database.php";
-include "files_handler.php";
-//include "mailer.php";
 
 $title = "eShop";
 $apath = "http://localhost/eshop/";
-$path = $apath . "administrator/";
+$path = $apath . "admin/";
 $uploads["files"] = "uploads/";
 $uploads["images"] = "uploads/images/";
 @session_start();
