@@ -2,7 +2,7 @@
 include "database.php";
 
 $title = "eShop";
-$apath = "http://localhost/eshop/";
+$apath = "http://localhost/eshop";
 $path = $apath . "admin/";
 $uploads["files"] = "uploads/";
 $uploads["images"] = "uploads/images/";

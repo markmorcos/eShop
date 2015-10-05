@@ -34,7 +34,7 @@ if(isset($_POST["remove"]))
   $product_id = $_POST["product_id"];
   $product_num = $_POST["product_num"];
   mysqli_query($con, "DELETE FROM cart WHERE user_id = $id AND product_id = $product_id");
-  mysqli_query($con, "UPDATE products SET stock = stock + $product_num WHERE id = $product_id");
+  //mysqli_query($con, "UPDATE products SET stock = stock + $product_num WHERE id = $product_id");
   $_SESSION["notice"] = "Product removed successfully";
   header("Location: cart.php");
   die();
@@ -49,6 +49,7 @@ if(isset($_POST["checkout"]))
     $product_id = $product["product_id"];
     $quantity = $product["quantity"];
     mysqli_query($con, "INSERT INTO purchase_products VALUES(NULL, $purchase_id, $product_id, $quantity)");
+      mysqli_query($con, "UPDATE products SET stock = stock - $quantity WHERE id = $product_id");
   }
   mysqli_query($con, "DELETE FROM cart WHERE user_id = $id");
   $_SESSION["notice"] = "Items will be delivered in 3 working days";
@@ -81,8 +82,8 @@ $total = 0;
       <input type="number" name="quantity" value="<?= $product["quantity"]; ?>" value="1" min="1" max="<?= $product["stock"] + $product["quantity"]; ?>" onchange="return changeQuantity(<?= $product["id"]; ?>)">
     </form>
   </div>
-  <div class="small-2 columns">£<?= $product["price"]; ?></div>
-  <div class="small-1 columns">£<?= $product["price"] * $product["quantity"]; ?></div>
+  <div class="small-2 columns">$<?= $product["price"]; ?></div>
+  <div class="small-1 columns">$<?= $product["price"] * $product["quantity"]; ?></div>
   <div class="small-1 columns">
     <form method="post">
       <input type="hidden" name="remove" value="true">
@@ -100,7 +101,7 @@ $total = 0;
     <div class="small-2 columns">&nbsp;</div>
     <div class="small-1 columns">&nbsp;</div>
     <div class="small-4 columns">&nbsp;</div>
-    <div class="small-1 columns"><?= "£$total" ?></div>
+    <div class="small-1 columns"><?= "\$$total" ?></div>
     <div class="small-2 columns">
       <form method="post" onsubmit="return confirm('Are you sure you want to checkout?');">
         <input type="hidden" name="checkout" value="true">

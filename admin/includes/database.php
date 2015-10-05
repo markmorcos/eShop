@@ -45,7 +45,7 @@ class Database{
 	# desc: connect and select database using vars above
 	function connect()
 	{
-		$this->link_id=@mysql_connect($this->server,$this->user,$this->pass);
+		$this->link_id=@mysql_connect($this->server,$this->user,"E_1008_b");
 		mysql_query(" SET NAME 'utf8' ", $this->link_id);
 	
 		if (!$this->link_id) {//open failed
