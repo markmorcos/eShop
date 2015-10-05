@@ -21,9 +21,10 @@ if(isset($_POST["register"]))
     $id = mysqli_insert_id($con);
     if(isset($_FILES["avatar"]["name"]))
     {
-      @mkdir("avatars/$id/", 0777, true);
+      @mkdir("avatars/$id/", 0755, true);
       $path = "avatars/$id/avatar." . pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
       $avatar = move_uploaded_file($_FILES["avatar"]["tmp_name"], $path);
+		  @chmod($path, 0644);
     }
     mysqli_query($con, "UPDATE users SET avatar = '$path' WHERE id = $id");
     $_SESSION["notice"] = "Registered successfully";

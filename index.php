@@ -76,14 +76,14 @@ if(isset($_POST["cart"]))
                             <form method="post">
                                 <input type="hidden" name="cart" value="true">
                                 <input type="hidden" name="product_id" value="<?= $product["id"]; ?>">
-                                <input type="hidden" id="number<?php echo $i ?>1" name="number" value="0" min="0" max="<?php echo $product["stock"]-$amount["quantity"]; ?>">
+                                <input type="hidden" id="number<?php echo $i ?>1" name="number" value="<?php echo $product["stock"] - $amount["quantity"] > 0 ? 1 : 0; ?>" min="<?php echo $product["stock"] - $amount["quantity"] > 0 ? 1 : 0; ?>" max="<?php echo $product["stock"] - $amount["quantity"]; ?>">
                                 <button type="submit" class="right tiny success button" style="margin-top:5px;"><i class="fi-shopping-cart"></i> Add to Cart</button>
                             </form>
                                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                         </div>
                         <input type="hidden" name="cart" value="true">
                         <input type="hidden" name="product_id" value="<?= $product["id"]; ?>">
-                        <div class="small-3 columns"><input id="number<?php echo $i ?>" type="number" value="0" min="0" max="<?php echo $product["stock"]-$amount["quantity"]; ?>"></div>
+                        <div class="small-3 columns"><input id="number<?php echo $i ?>" type="number" value="<?php echo $product["stock"] - $amount["quantity"] > 0 ? 1 : 0; ?>" min="<?php echo $product["stock"] - $amount["quantity"] > 0 ? 1 : 0; ?>" max="<?php echo $product["stock"] - $amount["quantity"]; ?>"></div>
                         <div class="small-5 columns"><a href="#" class="right tiny success button buy" data-reveal-id="product<?php echo $i; ?>" i="<?php echo $i; ?>" style="margin-top:5px;"><i class="fi-shopping-cart"></i> Add to Cart</a></div>
                 <?php elseif(!$current_user): ?>
                     <div class="small-8 columns"><a href="<?= $apath; ?>login.php" class="right tiny success button" data-reveal-id="product" style="margin-top:5px;">Login to buy</a></div>

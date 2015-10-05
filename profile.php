@@ -16,9 +16,10 @@ if(isset($_POST["profile"]))
   $id = $current_user["id"];
   if(isset($_FILES["avatar"]["name"]) && $_FILES["avatar"]["tmp_name"])
   {
-    @mkdir("avatars/$id/", 0777, true);
+    @mkdir("avatars/$id/", 0755, true);
     $path = "avatars/$id/avatar." . pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
     move_uploaded_file($_FILES["avatar"]["tmp_name"], $path);
+		@chmod($path, 0644);
     $avatar = $path;
   }
   mysqli_query($con, "UPDATE users SET first_name = '$first_name', last_name = '$last_name', avatar = '$avatar' WHERE id = $id");
