@@ -53,7 +53,7 @@ if(isset($_POST["checkout"]))
   }
   mysqli_query($con, "DELETE FROM cart WHERE user_id = $id");
   $_SESSION["notice"] = "Items will be delivered in 3 working days";
-  header("Location: purchases.php");
+  header("Location: index.php");
   die();
 }
 $result = mysqli_query($con, "SELECT * FROM cart INNER JOIN products p ON p.id = product_id WHERE user_id = $id");
