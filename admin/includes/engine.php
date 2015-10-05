@@ -50,10 +50,10 @@ class Engine
 			{
  				if($state && $_FILES[$field["name"]]["name"] && ($field["type"] == "file" || $field["type"] == "image"))
 				{
-					@mkdir("../" . $uploads["files"] . $field["destination"] . '/', 0777, true);
+					@mkdir("../" . $uploads["files"] . $field["destination"] . '/', 0755, true);
 					$file = $state . '.' . pathinfo($_FILES[$field["name"]]["name"], PATHINFO_EXTENSION);
 					move_uploaded_file($_FILES[$field["name"]]["tmp_name"], "../" . $uploads["files"] . $field["destination"] . '/' . $file);
-					@chmod("../" . $uploads["files"] . $field["destination"] . '/' . $file, 0777);
+					@chmod("../" . $uploads["files"] . $field["destination"] . '/' . $file, 0644);
 					$data[$field["name"]] = $file;
 				}
 			}

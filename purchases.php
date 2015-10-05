@@ -33,8 +33,8 @@ $total = 0;
   <div class="small-2 columns"><img src="<?= $product["image"] ? $uploads["files"] . "products/" . $product["image"] : "img/placeholder.png"; ?>" width="40%"></div>
   <div class="small-4 columns"><?= $product["name"]; ?></div>
   <div class="small-1 columns"><?= $product["quantity"]; ?></div>
-  <div class="small-2 columns">£<?= $product["price"]; ?></div>
-  <div class="small-1 columns">£<?= $product["price"] * $product["quantity"]; ?></div>
+  <div class="small-2 columns">$<?= $product["price"]; ?></div>
+  <div class="small-1 columns">$<?= $product["price"] * $product["quantity"]; ?></div>
   <div class="small-1 columns"><i class="fi-check success"></i></div>
 </div>
 <?php endwhile; ?>
@@ -45,7 +45,7 @@ $total = 0;
     <div class="small-4 columns">&nbsp;</div>
     <div class="small-1 columns">&nbsp;</div>
     <div class="small-2 columns">&nbsp;</div>
-    <div class="small-1 columns"><?= "£$total" ?></div>
+    <div class="small-1 columns"><?= "\$$total" ?></div>
     <div class="small-1 columns">&nbsp;</div>
   </strong>
 </div>
