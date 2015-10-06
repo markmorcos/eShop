@@ -1,20 +1,18 @@
 <?php include "header.php" ?>
 <script>
     $(document).on('click','.buy',function() {
-        var i= $(this).attr("i");
-        var number = "#number"+i;
+        var i = $(this).attr("i");
+        var number = "#number" + i;
         var quantity = $(number).val();
-        var price = "#price"+i;
+        var price = "#price" + i;
         price = $(price).text();
         var total = quantity*price;
-        var quantityModal = "#quantityModal"+i;
+        var quantityModal = "#quantityModal"+ i;
         $(quantityModal).text(quantity);
-        var max = $(number+"1").attr('max');
-        if(quantity<=max)
-            $(number+"1").val(quantity);
-        else
-            $(number+"1").val("0");
-        var totalModal ="#totalModal"+i;
+        var max = $(number + "1").attr('max');
+        if(quantity <= max) $(number + "1").val(quantity);
+        else $(number + "1").val("0");
+        var totalModal ="#totalModal" + i;
         $(totalModal).text(total);
 });
 </script>
@@ -23,17 +21,24 @@ if(isset($_POST["cart"]))
 {
     $product_id = $_POST["product_id"];
     $product_num = $_POST["number"];
-    if($product_num<=0){
-        $_SESSION["alert"]="Either you have chosen to buy zero items or your current cart equals all the stock";
-        header("Location: index.php");
-        die();
+    if($product_num <= 0)
+    {
+		$_SESSION["alert"] = "Either you have chosen to buy zero items or your current cart equals all the stock";
+		header("Location: index.php");
+		die();
     }
+    $stock = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM products WHERE id = $product_id"));
     $result = mysqli_query($con, "SELECT * FROM cart WHERE user_id = $id AND product_id = $product_id");
-    $stock = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM stock WHERE id = $product_id"));
     $exists = mysqli_fetch_assoc($result);
-    if($exists){if($exists["quantity"]+$product_num<=$stock["stock"])mysqli_query($con, "UPDATE cart set quantity = quantity + $product_num where user_id = $id AND product_id = $product_id");}
+    if($exists)
+    {
+      if($exists["quantity"] + $product_num <= $stock["stock"])
+      {
+        mysqli_query($con, "UPDATE cart SET quantity = quantity + $product_num WHERE user_id = $id AND product_id = $product_id");
+      }
+    }
     else mysqli_query($con, "INSERT INTO cart VALUES(NULL, $id, $product_id, $product_num)");
-    $_SESSION["notice"]="Item added to cart successfully";
+    $_SESSION["notice"] = "Item added to cart successfully";
     header("Location: index.php");
     die();
 }

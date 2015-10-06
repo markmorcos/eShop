@@ -5,12 +5,6 @@ $(document).ready(function() {
       e.preventDefault();
   });
 });
-function changeQuantity(product_id) {
-  $.post("cart.php", $("#product" + product_id).serialize(), function(data) {
-    location.href = "cart.php";
-    return false;
-  });
-}
 </script>
 <?php
 if(!$current_user)
@@ -27,7 +21,10 @@ if(isset($_POST["change_quantity"]))
   $product = mysqli_fetch_assoc($result);
   $diff = $quantity - $product["quantity"];
   mysqli_query($con, "UPDATE cart SET quantity = $quantity WHERE user_id = $id AND product_id = $product_id");
-  mysqli_query($con, "UPDATE products SET stock = stock - $diff WHERE id = $product_id");
+  //mysqli_query($con, "UPDATE products SET stock = stock - $diff WHERE id = $product_id");
+  $_SESSION["notice"] = "Cart updated successfully";
+  header("Location: cart.php");
+  die();
 }
 if(isset($_POST["remove"]))
 {
@@ -49,11 +46,11 @@ if(isset($_POST["checkout"]))
     $product_id = $product["product_id"];
     $quantity = $product["quantity"];
     mysqli_query($con, "INSERT INTO purchase_products VALUES(NULL, $purchase_id, $product_id, $quantity)");
-      mysqli_query($con, "UPDATE products SET stock = stock - $quantity WHERE id = $product_id");
+    mysqli_query($con, "UPDATE products SET stock = stock - $quantity WHERE id = $product_id");
   }
   mysqli_query($con, "DELETE FROM cart WHERE user_id = $id");
   $_SESSION["notice"] = "Items will be delivered in 3 working days";
-  header("Location: purchases.php");
+  header("Location: index.php");
   die();
 }
 $result = mysqli_query($con, "SELECT * FROM cart INNER JOIN products p ON p.id = product_id WHERE user_id = $id");
@@ -76,10 +73,10 @@ $total = 0;
   <div class="small-2 columns"><img src="<?= $product["image"] ? $uploads["files"] . "products/" . $product["image"] : "img/placeholder.png"; ?>" width="40%"></div>
   <div class="small-4 columns"><?= $product["name"]; ?></div>
   <div class="small-1 columns">
-    <form id="product<?= $product["id"]; ?>" onsubmit="return false;">
+    <form id="product<?= $product["id"]; ?>" method="post">
       <input type="hidden" name="change_quantity" value="true">
       <input type="hidden" name="product_id" value="<?= $product["product_id"]; ?>">
-      <input type="number" name="quantity" value="<?= $product["quantity"]; ?>" value="1" min="1" max="<?= $product["stock"] + $product["quantity"]; ?>" onchange="return changeQuantity(<?= $product["id"]; ?>)">
+      <input type="number" name="quantity" value="<?= $product["quantity"]; ?>" value="1" min="1" max="<?= $product["stock"]; ?>" onchange="$('#product<?= $product["id"]; ?>').submit()">
     </form>
   </div>
   <div class="small-2 columns">$<?= $product["price"]; ?></div>
