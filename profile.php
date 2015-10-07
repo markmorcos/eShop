@@ -35,16 +35,17 @@ if(isset($_POST["profile"]))
   <div class="small-6 push-3 columns">
   <h1>Profile</h1>
   <p><i class="fi-mail"></i> <a href="mailto:$current_user["email"]"><?= $current_user["email"]; ?></a></p>
-  <img src="<?= $current_user["avatar"]; ?>">
   <form method="post" enctype="multipart/form-data" onsubmit="if($('#p1').val() != $('#p2').val()) { alert('Passwords must match'); return false; }">
     <input type="hidden" name="profile" value="true">
     <div class="row">
       <div class="small-12 columns">
+        <label for="avatar">Avatar</label>
+        <img src="<?= $current_user["avatar"]; ?>">
+        <label><input id="avatar" type="file" name="avatar" placeholder="Avatar"></label>
         <label>First Name <input type="text" name="first_name" placeholder="First Name" value="<?= $current_user["first_name"]; ?>" required></label>
         <label>Last Name <input type="text" name="last_name" placeholder="Last Name" value="<?= $current_user["last_name"]; ?>" required></label>
         <label>Password <input id="p1" type="password" name="password" placeholder="Password"></label>
         <label>Confirm Password <input id="p2" type="password" name="confirm_password" placeholder="Confirm Password"></label>
-        <label>Avatar <input type="file" name="avatar" placeholder="Avatar"></label>
         <input type="submit" class="tiny expand button" value="Update">
       </div>
     </div>
