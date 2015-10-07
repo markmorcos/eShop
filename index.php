@@ -1,4 +1,11 @@
 <?php include "header.php" ?>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("[type=number]").keypress(function (e) {
+      e.preventDefault();
+  });
+});
+</script>
 <script>
     $(document).on('click','.buy',function() {
         var i = $(this).attr("i");
