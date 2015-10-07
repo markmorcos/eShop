@@ -65,7 +65,7 @@ if(isset($_POST["cart"]))
                 <img src="<?= $product["image"] ? $uploads["files"] . "products/" . $product["image"] : "img/placeholder.png"; ?>" width="100%">
             </div>
             <div class="row">
-                <div class="small-4 columns"><strong><?php echo $product["name"]; ?></strong><br><i>$<span id="price<?php echo $i; ?>"><?php echo $product["price"]; ?></span></i></div>
+                <div class="small-12 columns"><strong><?php echo $product["name"]; ?></strong>&nbsp;<i class="right">$<span id="price<?php echo $i; ?>"><?php echo $product["price"]; ?></span></i></div>
                 <?php if($product["stock"] && $current_user): ?>
                         <div id="product<?php echo $i ?>" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
                             <h4 id="modalTitle">Invoice</h4>
@@ -95,11 +95,11 @@ if(isset($_POST["cart"]))
                         <input type="hidden" name="cart" value="true">
                         <input type="hidden" name="product_id" value="<?= $product["id"]; ?>">
                         <div class="small-3 columns"><input id="number<?php echo $i ?>" type="number" value="<?php echo $product["stock"] - $amount["quantity"] > 0 ? 1 : 0; ?>" min="<?php echo $product["stock"] - $amount["quantity"] > 0 ? 1 : 0; ?>" max="<?php echo $product["stock"] - $amount["quantity"]; ?>"></div>
-                        <div class="small-5 columns"><a href="#" class="right tiny success button buy" data-reveal-id="product<?php echo $i; ?>" i="<?php echo $i; ?>" style="margin-top:5px;"><i class="fi-shopping-cart"></i> Add to Cart</a></div>
+                        <div class="small-5 columns right"><a href="#" class="right tiny success button buy" data-reveal-id="product<?php echo $i; ?>" i="<?php echo $i; ?>"><i class="fi-shopping-cart"></i> Add to Cart</a></div>
                 <?php elseif(!$current_user): ?>
-                    <div class="small-8 columns"><a href="<?= $apath; ?>login.php" class="right tiny success button" data-reveal-id="product" style="margin-top:5px;">Login to buy</a></div>
+                    <div class="small-8 columns right"><a href="<?= $apath; ?>login.php" class="right tiny success button" data-reveal-id="product">Login to buy</a></div>
                 <?php else: ?>
-                    <div class="small-8 columns"><a href="javascript:;" class="disabled right tiny alert button" style="margin-top:5px;">Sold Out</a></div>
+                    <div class="small-8 columns right"><a href="javascript:;" class="disabled right tiny alert button">Sold Out</a></div>
                 <?php endif; ?>
             </div>
         </div>

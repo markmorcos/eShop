@@ -37,12 +37,12 @@ $current_user = mysqli_fetch_assoc($result);
           <li class="divider hide-for-small"></li>
           <li><a href="profile.php"><i class="fi-torso"></i> Profile</a></li>
           <li class="divider hide-for-small"></li>
-          <li><a href="logout.php">Logout</a></li>
+          <li><a href="logout.php"><i class="fi-power"></i> Logout</a></li>
         <?php else: ?>
           <li class="divider hide-for-small"></li>
-          <li><a href="login.php">Login</a></li>
+          <li><a href="login.php"><i class="fi-torso"></i> Login</a></li>
           <li class="divider hide-for-small"></li>
-          <li><a href="register.php">Register</a></li>
+          <li><a href="register.php"><i class="fi-torsos-all"></i> Register</a></li>
         <?php endif ?>
       </ul>
     </section>

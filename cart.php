@@ -49,7 +49,7 @@ if(isset($_POST["checkout"]))
     mysqli_query($con, "UPDATE products SET stock = stock - $quantity WHERE id = $product_id");
   }
   mysqli_query($con, "DELETE FROM cart WHERE user_id = $id");
-  $_SESSION["notice"] = "Items will be delivered in 3 working days";
+  $_SESSION["notice"] = "Purchase completed. Items will be delievered within 3 days.";
   header("Location: index.php");
   die();
 }

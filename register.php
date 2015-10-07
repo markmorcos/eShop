@@ -47,7 +47,7 @@ if(isset($_POST["register"]))
         <label>Email <input type="email" name="email" placeholder="Email" value="<?= isset($_POST["email"]) ? $_POST["email"] : ""; ?>" required></label>
         <label>Password <input id="p1" type="password" name="password" placeholder="Password" required></label>
         <label>Confirm Password <input id="p2" type="password" name="confirm_password" placeholder="Confirm Password" required></label>
-        <label>Avatar <input type="file" name="avatar" placeholder="Avatar"></label>
+        <label>Avatar <input type="file" name="avatar" placeholder="Avatar" required></label>
         <input type="submit" class="tiny expand success button" value="Register">
       </div>
     </div>
