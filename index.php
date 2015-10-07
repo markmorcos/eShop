@@ -3,14 +3,14 @@
     $(document).on('click','.buy',function() {
         var i = $(this).attr("i");
         var number = "#number" + i;
-        var quantity = $(number).val();
+        var quantity = Number($(number).val());
         var price = "#price" + i;
-        price = $(price).text();
-        var total = quantity*price;
+        price = Number($(price).text());
+        var total = quantity * price;
         var quantityModal = "#quantityModal"+ i;
         $(quantityModal).text(quantity);
-        var max = $(number + "1").attr('max');
-        if(quantity <= max) $(number + "1").val(quantity);
+        var maxi = Number($(number + "1").attr('max'));
+        if(quantity <= maxi) $(number + "1").val(quantity);
         else $(number + "1").val("0");
         var totalModal ="#totalModal" + i;
         $(totalModal).text(total);
